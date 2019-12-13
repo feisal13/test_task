@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Comatible" content="ie=edge">
+    <title>News site</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css" >
+</head>
+<body>
+<div class="jumbotron">
+    <div class="container">
+    <ul class="sidebar-nav">
+
+   {% if user.is_authenticated %}
+     <li>User: {{ user.get_username }}</li>
+     <li><a href="{% url 'account_logout'%}?next={{request.path}}">Logout</a></li>
+   {% else %}
+     <li><a href="{% url 'account_login'%}?next={{request.path}}">Login</a></li>
+     <li><a href="{% url 'account_signup'%}?next={{request.path}}">register</a></li>
+   {% endif %}
+  </ul>
+
+        <p>
+        <a href="/" class="btn btn-success btn-lg">Home</a>
+        <a href="news/" class="btn btn-primary btn-lg">News</a>
+        </p>
+            {% block content %}
+            {% endblock %}
+    </div>
+</div>
+<div class="container">
+    <img src="{% static 'news/images/background.jpg' %}"
+    class="img-thumbnail">
+    <hr>2019</hr>
+
+</div>
+</body>
+</html>

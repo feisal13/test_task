@@ -1,0 +1,11 @@
+{% extends "news/wrapper.html" %}}
+
+{% block content %}
+<h5>Last news:</h5>
+{% for post in object_list %}
+    {% if post.is_public == True %}
+        <a href="/news/{{post.id}}"><h3>{{post.title}}</h3></a>
+        <h5>{{post.pub_date|date:"D, m, Y"}}</h5>
+    {% endif %}
+{% endfor %}
+{% endblock %}
